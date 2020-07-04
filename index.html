@@ -105,7 +105,6 @@
 									[0b00000000000, 0b111111, "Gladiator", "Only one person can leave spawn, when that player dies the next player can go"],
 									[0b00000000000, 0b111111, "Gunslinger", "Everyone buys a sheriff, whenever you shoot you must empty the entire clip as quickly as possible"],
 									[0b00000000000, 0b111111, "Choo Choo Train", "Form a line with your teamates, whenever you kill someone make your prefered train sound"],
-									[0b00000000000, 0b111111, "Choo Choo Train", "Form a line with your teamates, whenever you kill someone make your prefered train sound"],
 									[0b00000000000, 0b111111, "Suicidal", "The lowest player on the scoreboard tries to get themselves killed, the other teammates must protect him at all costs. Bonus points the suicidal player kills themself via teammates abilities"],
 									[0b00000000000, 0b011111, "Corey and Trevor", "The two bottom players on the scoreboard become Corey and Trevor, who can only buy abilities and armor. Their job is to charge into sites or follow your top fragger (Ricky) and protect him from dying."],
 									[0b00000000000, 0b011111, "Social Distancing", "No two players are allowed to be within sight of each other"],
@@ -137,13 +136,21 @@
 										var code2 = 0b100010;
 									}
 								}
-								else{
+								else if (document.getElementById("split").src.endsWith('images/split.jpg')){
 
 									if (Attacking){
 										var code2 = 0b010001;
 									}
 									else{
 										var code2 = 0b100001;
+									}
+								}
+								else{
+									if (Attacking){
+										var code2 = 0b010000;
+									}
+									else{
+										var code2 = 0b100000;
 									}
 								}
 							
@@ -175,7 +182,7 @@
 			<section id="three" class="wrapper align-center">
 				<div class="inner">
 					<div>
-						<h2 id = "name"></h2>
+						<h2 id = "name">Press one of the buttons to generate a strat</h2>
 					</div>
 					<div>
 						<h1 id = "desc"></h1>
