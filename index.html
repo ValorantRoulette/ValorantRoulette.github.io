@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<!--
+	Projection by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Valorant Strat Roulette</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Valorant Strat Roulette</h1>
+					</header>
+
+					<div class="flex ">
+
+						<div id = "agents">
+							
+						</div>
+						<script>
+							var code = 0b0;
+							var agents = ["breach", "brimstone", "cypher", "jett", "omen", "phoenix", "raze", "reyna", "sage", "sova", "viper"]
+							for (i = 0; i < agents.length; i++) {
+								var img = document.createElement("input");
+								img.id = agents[i];
+								img.type = "image";
+								img.src = `images/${agents[i]}_Dark.png`;
+								img.style = "padding-right: 10px; width: 100px; outline: none"
+								img.setAttribute("onclick", `agent_toggle(${i})`);
+								var src = document.getElementById("agents");
+								src.appendChild(img);
+							}
+
+							function agent_toggle(index) {
+								name = agents[index]
+								var x = document.getElementById(name);
+								if (x.src.endsWith(`images/${name}_Dark.png`)) {
+									x.src = `images/${name}.png`;
+									code += Math.pow(2, agents.length - index - 1);
+								} else {
+									x.src = `images/${name}_Dark.png`;
+								}
+							}
+
+						</script>
+						
+					</div>
+
+					<div id="map_selector">
+						<script>
+							var maps = ['ascent', 'bind', 'haven', 'split'];
+							for (i = 0; i < maps.length; i++) {
+								var img = document.createElement("input");
+								img.id = maps[i];
+								img.type = "image";
+								img.src = `images/${maps[i]}_dark.jpg`;
+								img.style = "padding-right: 10px; width: 200px; outline: none"
+								img.setAttribute("onclick", `map_toggle(${i})`);
+								var src = document.getElementById("map_selector");
+								src.appendChild(img);
+							}
+
+							function map_toggle(index) {
+								name = maps[index]
+								var x = document.getElementById(name);
+
+								var mapSelector = document.getElementById('map_selector');
+								var icons = mapSelector.childNodes;
+								for (i = 0; i<icons.length; i++){
+
+									icons[i].src = `images/${icons[i].id}_dark.jpg`
+								}
+								x.src = `images/${name}.jpg`
+							}
+
+						</script>
+					</div>
+					
+
+					<footer>
+						<button onclick="strat(true)">Attacking</button>
+						<button onclick="strat(false)">Defending</button>
+						<script>
+							function strat(Attacking) {
+								//format: breach, brimstone, cypher, jett, omen, phoenix, raze, reyna, sage, sova, viper
+								// 		  defenders, attackers, ascent, bind, haven, split
+								var strats = [
+									[0b00000000000, 0b111111, "Gun Control", "Thanks to gun control your team is only allowed: 1 pistol, 1 smg, 1 shotgun, 1 rifle, and 1 sniper"], 
+									[0b00000000100, 0b111011, "I can see everything from up here", "The whole team must go mid and have sage boost the team on her wall. Everyone must stay on the wall until it disappears"],
+									[0b00000000000, 0b111111, "Soviet Tactics", "One Person buys a gun and everyone else follows him and picks up the gun when he dies"],
+									[0b00000000000, 0b111111, "One in the Chamber", "you can only shoot one bullet at a time, if you miss you need to reload your gun before firing again"],
+									[0b01001000000, 0b111111, "If I can't see them, they can't see me", "Everyone who can buy smokes and other vision blocking abilities, use all of them on one site and plant the bomb without shooting"],
+									[0b01001000000, 0b111111, "It's not CS:GO", "Plant the bomb using only your abilities, you can use your guns only after the bomb has been platned"],
+									[0b00000000000, 0b111111, "b-hop practice", "Constantly jump the entire round"],
+									[0b00000000000, 0b011111, "Taking it slow", "You can only use Marshals and Ops, bind zoom to alt and shoot to f4"],
+									[0b00000000000, 0b111111, "Wealth Distribution", "The richest player must buy weapons for the whole team"],
+									[0b00000000000, 0b111111, "Gladiator", "Only one person can leave spawn, when that player dies the next player can go"],
+									[0b00000000000, 0b111111, "Gunslinger", "Everyone buys a sheriff, whenever you shoot you must empty the entire clip as quickly as possible"],
+									[0b00000000000, 0b111111, "Choo Choo Train", "Form a line with your teamates, whenever you kill someone make your prefered train sound"],
+									[0b00000000000, 0b111111, "Choo Choo Train", "Form a line with your teamates, whenever you kill someone make your prefered train sound"],
+									[0b00000000000, 0b111111, "Suicidal", "The lowest player on the scoreboard tries to get themselves killed, the other teammates must protect him at all costs. Bonus points the suicidal player kills themself via teammates abilities"],
+									[0b00000000000, 0b011111, "Corey and Trevor", "The two bottom players on the scoreboard become Corey and Trevor, who can only buy abilities and armor. Their job is to charge into sites or follow your top fragger (Ricky) and protect him from dying."],
+									[0b00000000000, 0b011111, "Social Distancing", "No two players are allowed to be within sight of each other"],
+									[0b00000000000, 0b111111, "Team Work", "Have one person buy a gun, every 10 seconds whoever has the gun must pass it to someone else"],
+									[0b00000000000, 0b011111, "Hot Potato", "You can't have the Bomb in your inventory for more than 5 seconds, you must pass it to someone else before time's up"],
+								];
+
+								if (document.getElementById("ascent").src.endsWith('images/ascent.jpg')){
+									if (Attacking){
+										var code2 = 0b011000;
+									}
+									else{
+										var code2 = 0b101000;
+									}
+								}
+								else if (document.getElementById("bind").src.endsWith('images/bind.jpg')){
+									if (Attacking){
+										var code2 = 0b010100;
+									}
+									else{
+										var code2 = 0b100100;
+									}
+								}
+								else if (document.getElementById("haven").src.endsWith('images/haven.jpg')){
+									if (Attacking){
+										var code2 = 0b010010;
+									}
+									else{
+										var code2 = 0b100010;
+									}
+								}
+								else{
+
+									if (Attacking){
+										var code2 = 0b010001;
+									}
+									else{
+										var code2 = 0b100001;
+									}
+								}
+							
+								while (true){
+									var strat = strats[Math.floor((Math.random() * strats.length))];
+									var or_res = strat[0] | code
+									var and_res = strat[1] & code2
+									if ((or_res == code) && (and_res == code2)){
+										break;
+									}
+									
+									
+								}
+
+								document.getElementById("name").innerHTML  = strat[2];
+								document.getElementById("desc").innerHTML  = strat[3];
+								
+
+
+							}
+						</script>
+						
+					</footer>
+				</div>
+			</section>
+
+
+		<!-- Three -->
+			<section id="three" class="wrapper align-center">
+				<div class="inner">
+					<div>
+						<h2 id = "name"></h2>
+					</div>
+					<div>
+						<h1 id = "desc"></h1>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<div>
+						<p>
+							Submit your own strats to ValorantRoulette@gmail.com
+						</p>
+					</div>
+
+					<div class="copyright">
+						&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+					</div>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
